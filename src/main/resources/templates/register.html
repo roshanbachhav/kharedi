@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img class="header-logo" src="/images/Logo.png" alt=""
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" th:href="@{/}"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/product}">Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">ContactUs</a>
+            </li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+              <a class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+              <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+      <head>
+        <link
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+          rel="stylesheet"
+          id="bootstrap-css"
+        />
+        <link
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet"
+        />
+        <title>Registration Form</title>
+      </head>
+
+      <body>
+        <div class="container register-container">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header">Register</div>
+                <div class="card-body">
+                  <form
+                    class="form-horizontal"
+                    method="post"
+                    th:action="@{register}"
+                    th:object="${user}"
+                  >
+                    <div class="form-group">
+                      <label for="firstName" class="cols-sm-2 control-label"
+                        >First Name</label
+                      >
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                          <span class="input-group-addon"
+                            ><i class="fa fa-user fa" aria-hidden="true"></i
+                          ></span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="firstName"
+                            id="firstName"
+                            required
+                            placeholder="Enter your First Name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="lastName" class="cols-sm-2 control-label"
+                        >Last Name</label
+                      >
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                          <span class="input-group-addon"
+                            ><i class="fa fa-user fa" aria-hidden="true"></i
+                          ></span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="lastName"
+                            id="lastName"
+                            required
+                            placeholder="Enter your Last Name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="username" class="cols-sm-2 control-label"
+                        >Username</label
+                      >
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                          <span class="input-group-addon"
+                            ><i class="fa fa-users fa" aria-hidden="true"></i
+                          ></span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="username"
+                            id="username"
+                            required
+                            placeholder="Enter your Username"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="password" class="cols-sm-2 control-label"
+                        >password</label
+                      >
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                          <span class="input-group-addon"
+                            ><i class="fa fa-key" aria-hidden="true"></i
+                          ></span>
+                          <input
+                            type="password"
+                            class="form-control"
+                            name="password"
+                            id="username"
+                            required
+                            placeholder="Enter your Username"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="username" class="cols-sm-2 control-label"
+                        >email</label
+                      >
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                          <span class="input-group-addon"
+                            ><i class="fa fa-envelope" aria-hidden="true"></i
+                          ></span>
+                          <input
+                            type="email"
+                            class="form-control"
+                            name="email"
+                            required
+                            id="username"
+                            placeholder="Enter your Username"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="username" class="cols-sm-2 control-label"
+                        >address</label
+                      >
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                          <span class="input-group-addon"
+                            ><i class="fa fa-globe" aria-hidden="true"></i
+                          ></span>
+                          <textarea
+                            class="form-control"
+                            name="address"
+                            id="username"
+                            required
+                            placeholder="Enter your Username"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="postcode" class="cols-sm-2 control-label"
+                        >Postcode</label
+                      >
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                          <span class="input-group-addon"
+                            ><i class="fa fa-map-marker" aria-hidden="true"></i
+                          ></span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="postcode"
+                            id="postcode"
+                            required
+                            placeholder="Enter your postcode"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="city" class="cols-sm-2 control-label"
+                        >City/Town</label
+                      >
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                          <span class="input-group-addon"
+                            ><i class="fa fa-building" aria-hidden="true"></i
+                          ></span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="city"
+                            id="city"
+                            required
+                            placeholder="Enter your city"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="username" class="cols-sm-2 control-label"
+                        >Mobile Number</label
+                      >
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                          <span class="input-group-addon phone-span"
+                            ><i
+                              class="fa fa-mobile phone"
+                              aria-hidden="true"
+                            ></i
+                          ></span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="phone"
+                            id="phone"
+                            required
+                            placeholder="Enter your Mobile number"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-lg btn-block login-button"
+                      >
+                        Register
+                      </button>
+                    </div>
+                    <div class="login-register text-center">
+                      <a th:href="@{/login}">Login</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

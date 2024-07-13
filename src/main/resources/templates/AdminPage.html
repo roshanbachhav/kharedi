@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+	<link rel="website icon" type="png" href="/images/App-Logo.png" />
+	<meta charset="UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<title>Admin</title>
+</head>
+
+<body class="admin-body">
+
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+	<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+	<nav class="sidebar close" th:fragment="sidebar">
+		<header>
+			<div class="image-text">
+				<span class="image">
+					<img src="/images/App-Logo.png" alt="Website-Logo" />
+				</span>
+
+				<div class="text header-text">
+					<span class="name">
+						<h5>Kharedi Ecommerce</h5>
+					</span>
+					<span class="autho">Admin Administrator</span>
+				</div>
+			</div>
+
+			<i class="bx bx-chevron-right toggle"></i>
+		</header>
+
+		<div class="menu-bar">
+			<div class="menu">
+				<li class="search-bar">
+					<i class="bx bx-search icon" id="Sid"></i>
+					<input type="text" placeholder="Searching" />
+				</li>
+				<li class="nav-link">
+					<a th:href="@{/admin}">
+						<i class="bx bxs-dashboard icon"></i>
+						<span class="text nav-text">Dashboard</span>
+					</a>
+				</li>
+				<ul class="menu-links">
+					<li class="nav-link">
+						<a th:href="@{/admin/categories}">
+							<i class="bx bxs-category-alt icon"></i>
+							<span class="text nav-text">Category</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a th:href="@{/admin/product}">
+							<i class="bx bxs-package icon"></i>
+							<span class="text nav-text">Products</span>
+						</a>
+					</li>
+					<li class="nav-link">
+						<a th:href="@{/admin/addProducts}">
+							<i class="bx bx-cart-download icon"></i>
+							<span class="text nav-text">Add Products</span>
+						</a>
+					</li>
+					<!-- <li class="nav-link">
+              <a href="">
+                <i class="bx bx-info-circle icon"></i>
+                <span class="text nav-text">About Us</span>
+              </a>
+            </li> -->
+				</ul>
+			</div>
+
+			<hr />
+
+			<div class="last-content">
+				<li class="nav-link">
+					<a href="#">
+						<i class="fa-solid fa-user icon"></i>
+						<span class="text nav-text">Profile</span>
+					</a>
+				</li>
+				<li class="nav-link">
+					<a th:href="@{/logout}">
+						<i class="bx bx-log-out icon"></i>
+						<span class="text nav-text">Logout</span>
+					</a>
+				</li>
+			</div>
+		</div>
+	</nav>
+
+	<div class="main">
+		<h1>Dashboard</h1>
+
+
+		<center> <h1 class="user-data-viewer">User Data</h1> </center>
+		<div class="flex flex-col mt-5 mb-5 container">
+			<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+				<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+					<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+						<table class="min-w-full divide-y divide-gray-200">
+							<thead>
+								<tr>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Username
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Password
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Email
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Firstname
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Lastname
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Phone Number
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Actions
+									</th>
+								</tr>
+							</thead>
+							<tbody class="bg-white divide-y divide-gray-200">
+								<tr class="bg-white" th:each="user : ${users}">
+									<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+										<span th:text="${user.username}">
+											JohnDoe
+										</span>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${#strings.substring(user.password, 0, 3)} + '*****'">*********</span>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${user.email}">
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${user.firstName}">
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${user.lastName}">
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${user.phone}">
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<a th:href="@{/admin/user/delete/{id}(id=${user.id})}">
+											<button class="border border-gray-400 px-4 py-2 rounded-md bg-gray-200 text-gray-800 hover:color-red-1000 hover:text-red-900 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200">
+												Delete</button>
+										</a>
+									</td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<hr>
+
+		<center> <h1 class="user-order-viewer">User Order Details</h1> </center>
+		<div class="flex flex-col mt-5 container">
+			<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+				<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+					<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+						<table class="min-w-full divide-y divide-gray-200">
+							<thead>
+								<tr>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Username
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Address
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Phone Number
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Total Price
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Order Date
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Delivered Date
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Actions
+									</th>
+									<th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Product Name
+									</th>
+								</tr>
+							</thead>
+							<tbody class="bg-white divide-y divide-gray-200">
+								<tr class="bg-white" th:each="order : ${orders}">																	
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${order.username}">johndoe</span>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${order.address}">123 Main St</span>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${order.phoneNumber}">123-456-7890</span>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${order.totalPrice}">$100.00</span>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm:ss')}">2024-03-06 12:00:00</span>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<span th:text="${#dates.format(order.ConfirmOrderDate, 'yyyy-MM-dd HH:mm:ss')}">2024-03-06 12:00:00</span>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+										<span class="truncate-ellipsis" th:text="${order.productName}">pant</span>
+									</td>	
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+										<a th:href="@{/admin/order/delete/{id}(id=${order.id})}">
+											<button class="border border-gray-400 px-4 py-2 rounded-md bg-gray-200 text-gray-800 hover:color-red-1000 hover:text-red-900 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200">
+												Delete</button>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:fragment="scripting">
+		<script src="/js/script.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"></script>
+	</div>
+</body>
+
+</html>

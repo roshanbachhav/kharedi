@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{AdminPage :: head}"></head>
+
+<body class="category-body">
+	<nav th:replace="~{AdminPage :: sidebar}"></nav>
+
+	<div class="container category-main">
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">SN</th>
+					<th scope="col">Category Name</th>
+					<th scope="col">Update</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr data-th-each="category , iStat : ${categories}">
+					<th class="table-data" scope="row" th:text="${iStat.index + 1}">1</th>
+					<!-- <td class="table-data" th:each="message : ${stocksForCategory(category.id)}">
+                        <span th:text="${message}"></span>
+                    </td> -->
+					<td class="table-data" th:text="${category.name}">Larry</td>
+
+					<td><a th:href="@{/admin/categories/update/{id}(id=${category.id})}" class="update"> <i
+								class='bx bx-edit-alt'></i> </a></td>
+					<td><a th:href="@{/admin/categories/delete/{id}(id=${category.id})}" class="delete"> <i
+								class="lni lni-trash-can"></i> </a></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+	<script th:replace="~{AdminPage :: scripting}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{AdminPage :: head}"></head>
+
+<body class="category-body">
+
+	<nav th:replace="~{AdminPage :: sidebar}"></nav>
+
+
+	<div class="container mt-5 category-main">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						Add Category
+					</div>
+					<div class="card-body">
+						<form th:action="@{/admin/categories/add}" method="post" th:object="${category}">
+							<input type="hidden" name="id" th:field="*{id}">
+							<div class="form-group">
+								<label for="name">
+									<h4>Add Category Name</h4>
+								</label>
+								<input type="text" class="form-control" required th:field="*{name}" name="name"
+									id="name" placeholder="Enter name">
+							</div>
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script th:replace="~{AdminPage :: scripting}"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
+    <div class="bg-white shadow-md rounded-md p-8 max-w-md">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-6">Order Confirm</h1>
+        <p class="text-gray-600 mb-4">Thank you for Order! Check product detail to your gmail </p>
+        <p class="text-gray-600 mb-4">Your order id <span th:text="${orderId}"></span> has been successfully placed.</p>
+        
+        <table class="w-full mb-6">
+            <thead>
+                <tr>
+                    <th class="text-left">Product Name</th>
+                    <th class="text-left">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over product names and prices -->
+                <tr th:each="order : ${order}">
+                    <td class="border border-gray-400 px-4 py-2" th:text="${order.productName}">Product Name</td>
+                    <td class="border border-gray-400 px-4 py-2" th:text="${order.totalPrice}">Price</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p class="text-gray-600 mb-6">We will send you a confirmation email shortly.</p>
+        <a th:href="@{/}" class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md transition-colors duration-300">Continue Shopping</a>
+    </div>
+</body>
+
+</html>

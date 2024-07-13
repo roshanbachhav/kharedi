@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{AdminPage :: head}"></head>
+
+<body>
+	<nav th:replace="~{AdminPage :: sidebar}"></nav>
+
+
+	<section class="ftco-section addproduct-main">
+		<div class="container">
+
+            <script th:if="${reloadPage}" type="text/javascript">
+                setTimeout(function () {
+                    location.reload();
+                }, 1000);
+            </script>
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-4">
+					<h2 class="heading-section">Products</h2>
+					<h4>Here some product are available...</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="product-table">
+							<thead class="thead-primary">
+								<tr>
+									<th>Images</th>
+									<th>Product</th>
+									<th>Price</th>
+									<!-- <th>Category</th> -->
+									<th>Status</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="alert" role="alert" th:each="product : ${products}">
+									<td>
+										<div class="img"
+											th:style="'background-image: url(' + @{/images/ProductImages/} + ${product.imageName} + ')'">
+										</div>
+									</td>
+									<td>
+										<div class="product">
+											<span th:text="${product.title}" class="title">Product Title</span>
+											<span th:text="${product.description}">Product Description</span>
+										</div>
+									</td>
+									<td class="product-price" th:text="${product.ourPrice}">$44.99</td>
+									<!-- <td class="quantity" th:each="category : ${category}">
+										<div class="input-group">
+											<span classs="product-category"
+												th:text="${category.name}">Electronics</span>
+										</div>
+									</td> -->
+									<td class="product-status">
+                                        <span th:if="${product.active}">Active</span>
+                                        <span th:unless="${product.active}">Inactive</span>
+                                    </td>
+                                    
+									<td>
+										<a th:href="@{/admin/product/update/{id}(id=${product.id})}">
+										<button type="button">
+											<span aria-hidden="true">
+												<i class="fas icon product-update">&#xf044;</i>
+											</span>
+										</button>
+									</a>
+									<a th:href="@{/admin/product/delete/{id}(id=${product.id})}">
+										<button type="button">
+											<span aria-hidden="true">
+												<i class="fas icon product-remove">&#xf1f8;</i>
+											</span>
+										</button>
+									</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script th:replace="~{AdminPage :: scripting}"></script>
+</body>
+
+</html>

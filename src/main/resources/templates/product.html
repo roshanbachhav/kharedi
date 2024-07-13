@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"/>
+	<link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+	<section class="product-section">
+
+		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#"><img class="header-logo" src="/images/Logo.png" alt="" /></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/product}">Product</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">ContactUs</a>
+						</li>
+						<li class="nav-item" sec:authorize="!isAuthenticated()">
+							<a class="nav-link" th:href="@{/login}">Login</a>
+						</li>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<a class="nav-link" th:href="@{/logout}">Logout</a>
+						</li>
+						<li class="nav-item active d-flex" sec:authorize="isAuthenticated()">
+							<a class="nav-link" th:href="@{/cart}" href="#"><i class="fa-solid fa-cart-shopping sc"></i></a>
+							<sup>
+								<span class="nav-link counter" th:text="${cartCount}">0</span>
+							</sup>
+						</li>
+						<li class="nav-item active">
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Categories
+							</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">Fashion</a></li>
+								<li><a class="dropdown-item" href="#">Grocery</a></li>
+								<li><a class="dropdown-item" href="#">Electronics</a></li>
+								<li><a class="dropdown-item" href="#">Mobile</a></li>
+							</ul>
+						</li>
+					</ul>
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+						<button class="btn btn-outline-success" type="submit">
+							Search
+						</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	
+	
+	<div class="container-fluid mt-5">
+		<div class="path">
+			<span class="path-link"> <h2 class="product-heading">Products</h2></span>
+			<div class = "display-style-btns">
+				<button type = "button" id = "grid-active-btn">
+					<i class = "fas fa-th"></i>
+				</button>
+				<button type = "button" id = "details-active-btn">
+					<i class = "fas fa-list-ul"></i>
+				</button>
+			</div>
+		</div>
+			<div class="row product-row">
+				<div class="col-md-2 mt-5 category-table">
+					<ul class="list-group">
+					  <li class="list-group-item active" aria-current="true">Categories</li>
+						 <a th:href="@{/product}"><li class="list-group-item" > All</li> </a>
+						 <a href="" th:each="category, iStat : ${categories}" th:href="@{/product/category/{id}(id=${category.id})}"><li class="list-group-item" th:text="${category.name}"> Grocery</li> </a>
+					</ul>
+	
+					<div class="dropdown mt-5">
+					  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  Sort Product
+					  </button>
+					  <ul id="sortDropdown" class="dropdown-menu">
+						  <li><a class="dropdown-item" href="#" data-sort="lowToHigh">Price : Low To High</a></li>
+						  <li><a class="dropdown-item" href="#" data-sort="highToLow">Price : High To Low</a></li>
+						  <li><a class="dropdown-item" href="#" data-sort="feature">Product : Feature</a></li>
+					  </ul>
+				  </div>
+				</div>
+				<!-- Product list -->
+				<div class="col-md-9">
+					<div class="item-list">
+						<div class="item" th:each="product : ${products}">
+							<div class="item-img">
+								<img th:src="@{/images/ProductImages/} + ${product.imageName}" th:alt="${product.imageName}" />
+							</div>
+							<div class="item-detail">
+								<a href="#" class="item-name" th:text="${product.title}">Accent Chair</a>
+								<div class="item-price">
+									<span class="new-price" th:text="${#numbers.formatDecimal(product.ourPrice, 0 , 'COMMA', 2, 'POINT')}"><sup class="rs-symbol">&#8377;</sup>220.00</span>
+									<span class="old-price" th:text="${#numbers.formatDecimal(product.listPrice, 0 , 'COMMA', 2, 'POINT')}"><sup class="rs-symbol">&#8377;</sup>275.60</span>
+								</div>
+								<p th:text="${product.description}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
+								<a class="Buy-btn" role="button" type="submit" th:href="@{/product/singleProduct/{id}(id=${product.id})}">Buy Now</a>
+							</div>
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+	
+	
+	
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"></script>
+		<script
+		  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		  crossorigin="anonymous"
+		></script>
+
+		<script>
+			
+			function readURL(input){
+				if(input.files && input.files[0]){
+					var reader = new FileReader();
+					reader.onload = function(e){
+						$('#imgPreview').attr('src', e.target.result).width(100).height(100);
+					}
+					reader.readAsDataURL(input.files[0])
+				}
+			}
+			$('#productImage').change(function(){
+				readURL(this);
+			});
+			$(".custom-file-input").on("change", function() {
+				var fileName = $(this).val().split("\\").pop();
+				$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+			});
+
+
+			const itemList = document.querySelector('.item-list');
+			const gridViewBtn = document.getElementById('grid-active-btn');
+			const detailsViewBtn = document.getElementById('details-active-btn');
+
+			gridViewBtn.classList.add('active-btn');
+
+			gridViewBtn.addEventListener('click', () => {
+				gridViewBtn.classList.add('active-btn');
+				detailsViewBtn.classList.remove('active-btn');
+				itemList.classList.remove('details-active');
+			});
+
+			detailsViewBtn.addEventListener('click', () => {
+				detailsViewBtn.classList.add('active-btn');
+				gridViewBtn.classList.remove("active-btn");
+				itemList.classList.add("details-active");
+			});
+
+			$(document).ready(function() {
+				$('.dropdown-item').click(function() {
+					var sortOption = $(this).data('sort');
+					if (sortOption === 'lowToHigh') {
+						sortItemsByPrice(true);
+					} else if (sortOption === 'highToLow') {
+						sortItemsByPrice(false);
+					}
+					return false;
+				});
+			});
+
+			function sortItemsByPrice(ascending) {
+				var $items = $('.item');
+				$items.sort(function(a, b) {
+					var priceA = parseFloat($(a).find('.new-price').text().replace(/[^\d.-]/g, ''));
+					var priceB = parseFloat($(b).find('.new-price').text().replace(/[^\d.-]/g, ''));
+					return ascending ? priceA - priceB : priceB - priceA;
+				});
+				$('.item-list').empty().append($items);
+			}
+		</script>
+
+	</section>
+
+</body>
+
+</html>

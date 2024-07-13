@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{AdminPage :: head}"></head>
+
+<body>
+
+
+	<nav th:replace="~{AdminPage :: sidebar}"></nav>
+	<section class="addproduct-main">
+		<main class="addProducts">
+			<div class="container">
+				<div class="add-products-parent">
+					<div class="add-products"> 
+						<h1>Add Products</h1>
+					</div>
+					<div class="add-your-product">
+						Add your product for your customers
+					</div>
+					<form th:action="@{/admin/addProducts}" method="post" th:object="${productDTO}"
+						enctype="multipart/form-data">
+						<input type="hidden" name="id" th:field="*{id}">
+						<div class="frame-child"></div>
+						<div class="frame-child"></div>
+
+						<div class="frame-inner"></div>
+						<div class="rectangle-div"></div>
+						<div class="rectangle-div2"></div>
+						<div class="rectangle-div3"></div>
+						<div class="frame-child1"></div>
+						<div class="frame-child2"></div>
+
+						<!-- Product details -->
+
+						<h2 class="products-details">Product Basic Details</h2>
+
+						<div class="product-name">Product name</div>
+						<input class="rectangle-input" type="text" name="title" id="title" required
+							th:field="*{title}" />
+						<div class="descriptions">Descriptions</div>
+						<textarea class="frame-child4" type="text" name="description" id="description"
+							th:field="*{Description}"></textarea>
+						<!-- End of product details -->
+
+						<!-- start product Image -->
+						<h2 class="products-images">Products Images</h2>
+						<!-- <input class="frame-child5" type="file" name="image" id="image" th:value="${game.image}" required /> -->
+						<input class="frame-child5" type="file" name="image" id="image" accept="image/jpeg, image/png"
+							required />
+						<!-- end product Image -->
+
+						<!-- end product Image -->
+
+						<!-- start product Category -->
+						<h2 class="categories-details">Categories Details</h2>
+						<div class="product-category">Product category for seperating the data.</div>
+
+						<div class="form-group">
+							<select class="frame-child6" name="category" th:field="*{categoryId}" id="category">
+								<option th:each="category :${categories}" th:value="${category.id}"
+										th:selected="${category.id == productDTO.categoryId}"
+										th:text="${category.name}">
+								</option>
+							</select>
+						</div>
+
+						<!-- end product Category -->
+
+						<!-- start product pricing -->
+						<h2 class="pricing">
+							<p class="add-products1">Prices Details</p>
+						</h2>
+						<div class="list-price">List Price</div>
+						<input class="frame-child10" type="text" name="listPrice" id="listPrice" th:field="*{listPrice}"
+							required />
+						<div class="our-price">
+							<p class="our-prices">Our Price</p>
+						</div>
+						<input class="frame-child11" type="text" name="ourPrice" id="ourPrice" th:field="*{ourPrice}"
+							required />
+
+						<!-- end product pricing -->
+
+						<!-- start product Rate -->
+						<h2 class="rating">
+							<p class="add-products1">Rating</p>
+						</h2>
+
+						<!-- <div class="age-rate">Age Rate</div>
+              <input class="frame-child7" type="text" name="age" id="age" th:field="*{off}" required /> -->
+						<div class="star-rating">Star Rating</div>
+						<input type="text" id="starRating" name="starRating" class="frame-child8" th:field="*{starRating}"
+							required />
+						<div class="stock-available">
+							<p class="add-products2">Stock Available</p>
+						</div>
+						<input class="frame-child9" type="text" id="stockAvailable" name="stock"
+						th:field="*{stock}" required />
+						<!-- end Rate -->
+
+
+						<!-- start product Status -->
+						<span>
+							<h2 class="products-status">Status</h2>
+						</span>
+
+						<div class="status-stats">
+							<span><label class="active-label"><input class="active" type="radio" name="active" value="true"
+								checked required /> Active </label></span>
+							<span><label class="inactive-label"><input class="inactive" type="radio" name="active" value="false"
+									required /> Inactive </label></span>
+						</div>
+
+						<span>
+							<h2 class="products-feature">Feature</h2>
+						</span>
+						<div class="feature-stats">
+							<label class="active-label"><input class="feature" type="radio" name="featureProducts" value="true"
+								checked required /> Yes </label>
+							<label class="inactive-label"><input class="notfeature" type="radio" name="featureProducts" value="false"
+									required /> No </label>
+						</div>
+
+
+						<!-- start product off -->
+						<span>
+							<h2 class="products-platform" style="font-weight: bold;">Off</h2>
+						</span>
+						<input class="frame-child13" type="text" name="off" id="off" th:field="*{off}" required />
+						<input type="hidden" name="imageName" th:value="${productDTO.imageName}">
+						<!-- end product Image -->
+
+						<div class="add-btn">
+							<span><button type="submit">Add</button></span>
+						</div>
+
+						<div class="clear-btn">
+							<span><button type="reset" th:href="@{/}">Clear</button></span>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</main>
+	</section>
+
+	<script th:replace="~{AdminPage :: scripting}"></script>
+</body>
+
+</html>
