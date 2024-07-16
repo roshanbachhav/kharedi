@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run the application
-FROM openjdk:20-jdk-alpine
+FROM openjdk:11-jdk-alpine
 
 # Copy the JAR file from the build stage
 COPY --from=build /usr/src/app/target/kharedi-0.0.1-SNAPSHOT.jar /kharedi.jar
