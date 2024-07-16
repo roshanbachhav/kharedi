@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM maven:3.8.6-openjdk-20 AS build
+FROM eclipse-temurin:11-jdk as builder
 
 COPY . .
 
