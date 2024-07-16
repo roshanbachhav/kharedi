@@ -4,8 +4,6 @@ FROM maven:3.8.6-openjdk-20 AS build
 # Copy the project files
 COPY . /usr/src/app
 
-# Set the working directory
-WORKDIR /usr/src/app
 
 # Build the application, skipping tests
 RUN mvn clean package -DskipTests
